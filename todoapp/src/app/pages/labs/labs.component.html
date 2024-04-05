@@ -1,12 +1,35 @@
-<h1>Hola este es mi primer proyecto de Angular!</h1>
-<p>{{ welcomme }}</p>
-<ul>
-  <li *ngFor="let task of tasks">
-    {{task}}
-  </li>
-</ul>
+<div class="container">
+  <h1>Hola este es mi primer proyecto de Angular!</h1>
+  <p>{{ welcomme }}</p>
+  <ul>
+    <li *ngFor="let task of tasks">
+      {{task}}
+    </li>
+  </ul>
 
-<hr>
+  <hr>
 
-<h2>{{ 'hola'}}</h2>
-<p>Hola soy, {{ name }} y tengo {{ age }} </p>
+  <h2>{{ 'hola'}}</h2>
+  <p>Hola soy, {{ name }} y tengo {{ age }} </p>
+
+  <hr>
+  <img [src]="image" alt="" width="50%">
+  <input type="text" [value]="name">
+  <hr>
+  <p>Name: {{ usuario.name }}</p>
+  <p>Last Name: {{ usuario.apellido }}</p>
+  <img [src]="usuario.avatar" alt="user avatar image">
+
+  <hr>
+  <h2>Event Binding</h2>
+  <button (click)="clickHandler()">Click to alert</button>
+  <button (dblclick)="clickHandler()">Dobule click me</button>
+  <input type="number" name="" id="" [value]="usuario.age" (change)="changeHandler($event)">
+
+  <hr>
+  <p>Keydown</p>
+  <input type="text" name="" id="" placeholder="Ingresa tu nombre" (keydown)="keyDownHandler($event)">
+
+  <p>Keydown con atajo de teclado</p>
+  <input type="text" placeholder="shift+t activa " (keydown.shift.t)="clickHandler()">
+</div>
