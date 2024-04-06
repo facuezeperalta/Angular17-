@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
@@ -11,13 +11,13 @@ import { CommonModule } from '@angular/common';
 })
 export class LabsComponent {
   welcomme = "Hola! desde una variable desde la lógica!"
-  tasks = [
+  tasks =signal([
     "Instalar Angular CLI",
     "Crear Proyecto",
     "Crear componentes",
     "Ser constante con la práctica"
-  ]
-  name = "Facundo Peralta";
+  ])
+  name = signal("Facundo Peralta");
   age = 28;
   image = "https://s1.eestatic.com/2020/07/21/omicrono/hardware/fotografia-hardware-hardware_506960175_156187018_1706x960.jpg";
   usuario ={
@@ -30,10 +30,13 @@ export class LabsComponent {
     alert("Hola!")
   }
   changeHandler(event:Event){
-    console.log()
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.name.set(newValue);
   }
   keyDownHandler(event: KeyboardEvent){
     const input =  event.target as HTMLInputElement;
     console.log(input.value);
   }
+
 }

@@ -2,7 +2,7 @@
   <h1>Hola este es mi primer proyecto de Angular!</h1>
   <p>{{ welcomme }}</p>
   <ul>
-    <li *ngFor="let task of tasks">
+    <li *ngFor="let task of tasks()">
       {{task}}
     </li>
   </ul>
@@ -10,7 +10,7 @@
   <hr>
 
   <h2>{{ 'hola'}}</h2>
-  <p>Hola soy, {{ name }} y tengo {{ age }} </p>
+  <p>Hola soy, {{ name() }} y tengo {{ age }} </p>
 
   <hr>
   <img [src]="image" alt="" width="50%">
@@ -32,4 +32,17 @@
 
   <p>Keydown con atajo de teclado</p>
   <input type="text" placeholder="shift+t activa " (keydown.shift.t)="clickHandler()">
+
+<hr>
+
+<h1>Signals</h1>
+  <input type="text"  [value]="name()" (change)="changeHandler($event)">
+  <p>{{ name() }}</p>
+
+  <hr>
+  <p>Directivas de control</p>
+  <ul *ngFor="let tarea of tasks(); index as i">
+      {{ i }} {{ tarea }}
+  </ul>
+  <p>Cantidad de tareas: {{ tasks().length }}</p>
 </div>
