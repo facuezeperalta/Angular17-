@@ -15,12 +15,12 @@ export class HomeComponent {
     {
       id: 1,
       title: "Crear proyecto en Angular",
-      completed: true
+      completed: false
     },
     {
       id: 4,
       title: "Crear elementos",
-      completed:true
+      completed:false
     },
     {
       id: 2,
@@ -30,7 +30,12 @@ export class HomeComponent {
     {
       id:3,
       title: "Aprender algo nuevo todos los días",
-      completed: true
+      completed: false
+    },
+    {
+      id: 123,
+      title: "hola",
+      completed: false
     }
   ])
   addTask(event: Event){
@@ -53,6 +58,19 @@ export class HomeComponent {
 
   deleteTask(index: number){
     this.tasks.update((tasks) => tasks.filter((task,position) => position!== index) ); /* filtramos el array de tasks para crear otro nuevo y asi respetar la inmutabilidad  */
+  }
+  updateTask(index: number){
+    this.tasks.update((tasks) => {
+      return  tasks.map((task,position) =>{
+        if(position === index){
+          return{
+            ...task,
+            completed : !task.completed
+          }
+        }
+        return task;
+      })
+    })
   }
 
 }

@@ -16,15 +16,15 @@
   <img [src]="image" alt="" width="50%">
   <input type="text" [value]="name">
   <hr>
-  <p>Name: {{ usuario.name }}</p>
-  <p>Last Name: {{ usuario.apellido }}</p>
-  <img [src]="usuario.avatar" alt="user avatar image">
+  <p>Name: {{ usuario().name }}</p>
+  <p>Last Name: {{ usuario().apellido }}</p>
+  <img [src]="usuario().avatar" alt="user avatar image">
 
   <hr>
   <h2>Event Binding</h2>
   <button (click)="clickHandler()">Click to alert</button>
   <button (dblclick)="clickHandler()">Dobule click me</button>
-  <input type="number" name="" id="" [value]="usuario.age" (change)="changeHandler($event)">
+  <input type="number" name="" id="" [value]="usuario().age" (change)="changeHandler($event)">
 
   <hr>
   <p>Keydown</p>
@@ -36,7 +36,7 @@
 <hr>
 
 <h1>Signals</h1>
-  <input type="text"  [value]="name()" (change)="changeHandler($event)">
+  <input type="text"   (change)="changeHandler($event)">
   <p>{{ name() }}</p>
 
   <hr>
@@ -45,4 +45,15 @@
       {{ i }} {{ tarea }}
   </ul>
   <p>Cantidad de tareas: {{ tasks().length }}</p>
+  <hr>
+  <h1>NgIF</h1>
+  <input type="number" [value]="usuario().age" (change)="changeAge($event)">
+  <div *ngIf = "usuario().name === 'facundo' && usuario().age > 18 ; else elseblock" >
+    mi nombre es {{ usuario().name}} y tengo {{ usuario().age }} soy mayor de edad.
+  </div>
+  <ng-template #elseblock>
+    soy {{ usuario().name }} y soy menor de 18
+  </ng-template>
+  <p>{{usuario().name}}</p>
+  <p>{{ usuario().age }}</p>
 </div>

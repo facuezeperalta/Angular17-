@@ -20,12 +20,12 @@ export class LabsComponent {
   name = signal("Facundo Peralta");
   age = 28;
   image = "https://s1.eestatic.com/2020/07/21/omicrono/hardware/fotografia-hardware-hardware_506960175_156187018_1706x960.jpg";
-  usuario ={
-    name : "Ezequiel",
+  usuario = signal ({
+    name : "facundos",
     apellido: "Peralta",
     avatar: "https://cdn-icons-png.flaticon.com/512/3541/3541871.png",
     age: 28
-  }
+  });
   clickHandler(){
     alert("Hola!")
   }
@@ -38,5 +38,14 @@ export class LabsComponent {
     const input =  event.target as HTMLInputElement;
     console.log(input.value);
   }
-
+  changeAge(event:Event){
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.usuario.update(prevState => {
+      return {
+        ...prevState,
+        age: parseInt(newValue)
+      }
+    })
+  }
 }
