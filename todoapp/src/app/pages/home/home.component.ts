@@ -1,5 +1,7 @@
 import { Component, signal } from '@angular/core';
 import{CommonModule} from '@angular/common'
+import { Task } from '../../models/task.model';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,19 +11,46 @@ import{CommonModule} from '@angular/common'
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  tasks = signal([
-    "Instalar Angular CLI",
-    "Crear Proyecto",
-    "Crear componentes",
-    "Ser constante con la práctica",
-    "Hacer mi web de fotografía"
+  tasks  = signal<Task[]>([
+    {
+      id: 1,
+      title: "Crear proyecto en Angular",
+      completed: true
+    },
+    {
+      id: 4,
+      title: "Crear elementos",
+      completed:true
+    },
+    {
+      id: 2,
+      title:"Crear mi web de fotografía",
+      completed: false
+    },
+    {
+      id:3,
+      title: "Aprender algo nuevo todos los días",
+      completed: true
+    }
   ])
   addTask(event: Event){
     const input = event.target as HTMLInputElement;
     const newTask = input.value;
-    this.tasks.update((tasks) => [...tasks,newTask]); /* agregamos un elemento al final de la lista */
-    input.value = "";
+     /* agregamos un elemento al final de la lista */
+    this.configureTask(newTask);
+     input.value = "";
   };
+
+  configureTask(title:string){
+    const newTask ={
+      id : Date.now(),
+      title,
+      completed: false
+    }
+    this.tasks.update((tasks) => [...tasks,newTask]);
+
+  }
+
   deleteTask(index: number){
     this.tasks.update((tasks) => tasks.filter((task,position) => position!== index) ); /* filtramos el array de tasks para crear otro nuevo y asi respetar la inmutabilidad  */
   }
