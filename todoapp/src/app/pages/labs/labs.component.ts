@@ -17,6 +17,10 @@ export class LabsComponent {
     "Crear componentes",
     "Ser constante con la práctica"
   ]);
+  person =signal({
+    name: "facundo",
+    age: 18
+  });
   name = signal("Facundo Peralta");
   age = 28;
   image = "https://s1.eestatic.com/2020/07/21/omicrono/hardware/fotografia-hardware-hardware_506960175_156187018_1706x960.jpg";
@@ -45,6 +49,16 @@ export class LabsComponent {
       return {
         ...prevState,
         age: parseInt(newValue)
+      }
+    })
+  }
+  changeName(event:Event){
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.person.update(prevState => {
+      return{
+        ...prevState,
+        name: newValue
       }
     })
   }

@@ -56,4 +56,13 @@
   </ng-template>
   <p>{{usuario().name}}</p>
   <p>{{ usuario().age }}</p>
+  <hr>
+  <h2>NgSwitch</h2>
+  <input type="text" [value]="person().name" (change)="changeName($event)">
+  <div [ngSwitch]="person().name">
+    <p *ngSwitchCase="'facundo'"> yo soy facu </p>
+    <p *ngSwitchCase="'ezequiel'">yo soy eze</p>
+    <p *ngSwitchCase="'sofia'">yo soy sofia</p>
+    <p *ngSwitchDefault>no es nadie</p>
+  </div>
 </div>
