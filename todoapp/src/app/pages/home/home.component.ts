@@ -16,4 +16,14 @@ export class HomeComponent {
     "Ser constante con la práctica",
     "Hacer mi web de fotografía"
   ])
+  addTask(event: Event){
+    const input = event.target as HTMLInputElement;
+    const newTask = input.value;
+    this.tasks.update((tasks) => [...tasks,newTask]); /* agregamos un elemento al final de la lista */
+    input.value = "";
+  };
+  deleteTask(index: number){
+    this.tasks.update((tasks) => tasks.filter((task,position) => position!== index) ); /* filtramos el array de tasks para crear otro nuevo y asi respetar la inmutabilidad  */
+  }
+
 }
