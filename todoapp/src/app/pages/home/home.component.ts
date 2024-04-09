@@ -2,11 +2,11 @@ import { Component, signal } from '@angular/core';
 import{CommonModule} from '@angular/common'
 import { Task } from '../../models/task.model';
 import { combineLatest } from 'rxjs';
-
+import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -38,12 +38,22 @@ export class HomeComponent {
       completed: false
     }
   ])
-  addTask(event: Event){
-    const input = event.target as HTMLInputElement;
-    const newTask = input.value;
-     /* agregamos un elemento al final de la lista */
-    this.configureTask(newTask);
-     input.value = "";
+
+  newTaskControl = new FormControl('',{
+    nonNullable: true,
+    validators: [Validators.required]
+  })
+
+  addTask(){
+    if(this.newTaskControl.valid){
+      const value = this.newTaskControl.value;
+      /* agregamos un elemento al final de la lista */
+      this.configureTask(value);
+      this.newTaskControl.setValue("");
+    }
+
+
+
   };
 
   configureTask(title:string){
