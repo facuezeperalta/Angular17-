@@ -46,10 +46,15 @@ export class HomeComponent {
 
   addTask(){
     if(this.newTaskControl.valid){
-      const value = this.newTaskControl.value;
+      const value = this.newTaskControl.value.trim();
+      if(value !==""){
+        this.configureTask(value);
+        this.newTaskControl.setValue("");
+      }else{
+        alert("La tarea no puede estar vacia.")
+      }
       /* agregamos un elemento al final de la lista */
-      this.configureTask(value);
-      this.newTaskControl.setValue("");
+
     }
 
 
