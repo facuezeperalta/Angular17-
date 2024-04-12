@@ -16,3 +16,15 @@
   display: block;
   background-color: lightblue;
 }
+.message-error{
+  background-color: lightsalmon;
+  color: whitesmoke;
+  padding: 5px;
+  margin-top: 50px;
+  opacity: 0;
+  transition: all linear  0.5s;
+
+}
+.show{
+  opacity: 1;
+}

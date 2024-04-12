@@ -85,6 +85,13 @@
   <input type="number" placeholder="Height control" [formControl]="heigthCtrl">
   <input type="number" placeholder="roundness contro" [formControl] ="roundCtrl">
   <input type="color" placeholder="Set the fill color" [formControl]="colorCtrl">
-  <span class="shape1" [style.width.px]="widthCtrl.value" [style.height.px] ="heigthCtrl.value" [style.border-radius.px]="roundCtrl.value" [style.background-color] = "colorCtrl.value" ></span>
+  <span class="shape1" [style.width.px]="widthCtrl.value" [style.height.px] ="heigthCtrl.value" [style.border-radius.px]="roundCtrl.value" [style.background-color] = "colorCtrl.value  " ></span>
 
+  <hr>
+  <h2>Clases en Angular (para estilos)</h2>
+  <p>
+    <input type="text" placeholder="Mínimo 5 caract." [formControl]="nameCtrl" > <br >
+    <br>
+    <span class="message-error" [class.show]="nameCtrl.invalid &&  nameCtrl.touched">Nombre inválido</span>
+  </p>
 </div>
